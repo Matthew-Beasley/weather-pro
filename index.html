@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+        <link rel="stylesheet" href="style.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.js" defer></script>
+        <script src="app.js" defer></script>
+    </head>
+
+    <body>
+        <header>
+            <h2>Weather-Pro</h2>
+        </header>
+
+        <nav>
+            <form class="form-group" id="data-request-form">
+                <label for="data-selector">Weather Data Selection:</label>
+                <select class="form-control" id="data-selector">
+                    <option value="current">Current Weather</option>
+                    <option value="hourly">Hourly Forcast</option>
+                    <option value="five-day">5 Day, 3 Hour Forecast</option>
+                    <option value="sixteen-day">16 Day, Daily Forecast</option>
+                    <option value=climate-thirty-day>Climate Forecast, 30 Days</option>
+                    <option value="historical">Historical Weather Data</option>
+                    <option value="statistical">Statistical Weather Data</option>
+                </select>
+                <label>Select Location</label>
+                <input type="text" name="location" placeholder="City" id="location">
+                <input type="submit" value="Submit" id="submit">
+            </form>
+        </nav>
+
+        <main>
+            <!-- generated html goes here, this is the data portal-->
+        </main>
+
+        <footer>
+
+        </footer>
+    </body>

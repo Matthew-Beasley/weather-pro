@@ -1,0 +1,47 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-items: left;
+    padding: 2rem;
+}
+
+header {
+    border-bottom: 1px solid grey;
+}
+
+#data-request-form {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    flex-wrap: wrap;
+    padding-top: 1rem;
+    border-bottom: 1px solid grey;
+}
+
+label {
+    margin: 0rem 1rem 1rem 3rem;
+}
+
+#submit {
+    margin: 0rem 1rem 1rem 1rem;
+}
+
+#data-selector {
+    width: 14rem;
+    height: 2rem;
+}
+
+#location {
+    height: 2rem;
+}
+
+main {
+    padding: 2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+#basic-wx {
+
+}
