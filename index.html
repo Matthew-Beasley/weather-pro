@@ -19,20 +19,22 @@
         </header>
 
         <nav>
-            <form class="form-group" id="data-request-form">
+            <form class="form-group" class="input-label" id="data-request-form">
                 <label for="data-selector">Weather Data Selection:</label>
                 <select class="form-control" id="data-selector">
-                    <option value="current">Current Weather</option>
+                    <option value="weather">Current Weather</option>
                     <option value="hourly">Hourly Forcast</option>
-                    <option value="five-day">5 Day, 3 Hour Forecast</option>
+                    <option value="forecast">5 Day, 3 Hour Forecast</option>
                     <option value="sixteen-day">16 Day, Daily Forecast</option>
                     <option value=climate-thirty-day>Climate Forecast, 30 Days</option>
                     <option value="historical">Historical Weather Data</option>
                     <option value="statistical">Statistical Weather Data</option>
                 </select>
-                <label>Select Location</label>
+                <label class="input-label">Select Location</label>
                 <input type="text" name="location" placeholder="City" id="location">
                 <input type="submit" value="Submit" id="submit">
+                <input type="radio" name="units" value="imperial">Imperial</input>
+                <input type="radio" name="units" value="metric">Metric</input>
             </form>
         </nav>
 

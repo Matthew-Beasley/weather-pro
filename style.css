@@ -18,8 +18,12 @@ header {
     border-bottom: 1px solid grey;
 }
 
-label {
+.input-label {
     margin: 0rem 1rem 1rem 3rem;
+}
+
+[type="radio"] {
+    margin:  0rem 1rem 1rem 1rem;
 }
 
 #submit {
@@ -40,8 +44,4 @@ main {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-}
-
-#basic-wx {
-
 }
