@@ -38,6 +38,9 @@ header {
 #location {
     height: 2rem;
 }
+label {
+    margin-right: 1rem;
+}
 
 main {
     padding: 2rem;
@@ -45,3 +48,23 @@ main {
     flex-direction: row;
     justify-content: space-around;
 }
+
+#container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+#container > h3 {
+    width: 100%;
+}
+
+.daily {
+    margin: 2rem;
+}
+
+.daily > p {
+    margin: 0rem;
+    padding: 0rem;
+}
+
