@@ -9,6 +9,7 @@ const mainPanel = document.querySelector('main');
 // Refactor, take these out of the of the global scope
 const BASE_URL = 'https://api.openweathermap.org/data/2.5/'
 const API_KEY = '?APPID=a315dcab0681ed1e5e3f9154a0ada450';
+const MAP_BASE_URL = 'https://tile.openweathermap.org/map/'
 
 // Refactor to handle more arguments
 const buildURL = () => {
@@ -20,9 +21,13 @@ const buildURL = () => {
         unitType = UNIT_TYPE_MTRC.value;
     }
 
-    let fullURL = BASE_URL;
-    fullURL += `${WEATHER_DATA_TYPE.value}${API_KEY}&q=${WEATHER_ZONE.value}&units=${unitType}`;
-    return fullURL;
+    if (WEATHER_DATA_TYPE.value === 'weather' ||
+        WEATHER_DATA_TYPE.value === 'forecast') {
+        return `${BASE_URL}${WEATHER_DATA_TYPE.value}${API_KEY}&q=${WEATHER_ZONE.value}&units=${unitType}`;
+    } else if (WEATHER_DATA_TYPE.value === 'precipitation_new' ||
+        WEATHER_DATA_TYPE.value === 'clouds_new') {
+        return `https://tile.openweathermap.org/map/precipitation_new/2/48/128.png${API_KEY}`;//`${MAP_BASE_URL}${WEATHER_DATA_TYPE.value}.png${API_KEY}`;
+    }
 }
 
 function roundToPrecision(x, precision) {
@@ -48,7 +53,6 @@ const getLocalWxHours = () => {
 const displayTheCurrentData = (wxData) => {      //Refactor to display city first letter uppercase
     const wxKey = wxData.weather[0];            //Refactor to account for spaces in city names
     const mainKey = wxData.main;
-console.log(wxData);
     let html =
     `<div id="basic-wx">
         <h5>Current Weather for ${WEATHER_ZONE.value}</h5>
@@ -71,7 +75,6 @@ const displayFiveDayForcast = (wxData) => {
 
     wx5DayList.forEach(item => {
         if (+item.dt_txt.substr(11, 2) === localTime) {
-            console.log(item)
             let date = new Date(item.dt_txt);
             let displayDate = `  ${date.getMonth() + 1}/${date.getDate()}`;
 
@@ -91,6 +94,11 @@ const displayFiveDayForcast = (wxData) => {
     mainPanel.innerHTML = html;
 }
 
+const displayMap = (wxData) => {
+    console.log(wxData.data)
+    mainPanel.innerHTML = wxData.data;
+}
+
 const axiosRequest = (url) => {
     return axios.get(url)
 }
@@ -98,16 +106,16 @@ const axiosRequest = (url) => {
 const goGetData = async (event) => {
     event.preventDefault();
 
-    //console.log(event);
-
     const URL = buildURL();
     const theData = await axiosRequest(URL);
 
-    // Refactor here to add more ways to display data
     if (WEATHER_DATA_TYPE.value === 'weather') {
         displayTheCurrentData(theData.data);
     } else if (WEATHER_DATA_TYPE.value === 'forecast') {
         displayFiveDayForcast(theData);
+    } else if (WEATHER_DATA_TYPE.value === 'precipitation_new' ||
+        WEATHER_DATA_TYPE.value === 'clouds_new') {
+        displayMap(theData);
     }
 }
 
