@@ -48,15 +48,14 @@ const getLocalWxHours = () => {
 const displayTheCurrentData = (wxData) => {      //Refactor to display city first letter uppercase
     const wxKey = wxData.weather[0];            //Refactor to account for spaces in city names
     const mainKey = wxData.main;
-
+console.log(wxData);
     let html =
     `<div id="basic-wx">
         <h5>Current Weather for ${WEATHER_ZONE.value}</h5>
         <img src="http://openweathermap.org/img/w/${wxKey.icon}.png" height="100" width="100">
         <h6>${wxKey.main}</h6>
         <p>Temp ${mainKey.temp}</p>
-        <p>Low ${mainKey.temp_min}</p>
-        <p>High ${mainKey.temp_max}</p>
+        <p>Wind ${wxData.wind.speed}</p>
         <p>Humidity ${mainKey.humidity}</p>
         <p>Pressure ${mainKey.pressure}</p>
     </div>`;
@@ -71,8 +70,8 @@ const displayFiveDayForcast = (wxData) => {
                 <h3>5 Day Forecast For ${WEATHER_ZONE.value}</h3>`;
 
     wx5DayList.forEach(item => {
-
-        if (item.dt_txt.substr(11, 2) === localTime) {
+        if (+item.dt_txt.substr(11, 2) === localTime) {
+            console.log(item)
             let date = new Date(item.dt_txt);
             let displayDate = `  ${date.getMonth() + 1}/${date.getDate()}`;
 
@@ -82,8 +81,7 @@ const displayFiveDayForcast = (wxData) => {
                 <img src="http://openweathermap.org/img/w/${item.weather[0].icon}.png" height="100" width="100">
                 <p>${item.weather[0].description}</p>
                 <p>Temp ${item.main.temp}</p>
-                <p>High ${item.main.temp_max}</p>
-                <p>Low ${item.main.temp_min}</p>
+                <p>Wind ${item.wind.speed}</p>
                 <p>Humidity ${item.main.humidity}</p>
                 <p>Pressure ${item.main.pressure}</p>
             </div>`
