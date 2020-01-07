@@ -96,7 +96,12 @@ const displayFiveDayForcast = (wxData) => {
 
 const displayMap = (wxData) => {
     console.log(wxData.data)
-    mainPanel.innerHTML = wxData.data;
+    fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${48.00}&lon=${-128.00}&appid=${API_KEY}`)
+        .then(r => r.json())
+        .then(data => {
+            // Change this line to show exactly the info you need
+            popup.setContent(data.weather.map(w => w.description).join(', '))
+        });
 }
 
 const axiosRequest = (url) => {
